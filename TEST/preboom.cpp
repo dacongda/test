@@ -19,9 +19,9 @@ void boom::nwg()
 		}
 		else {
 			save[x][y] = 10;
-			for (int xc = -1; xc <2; xc += 1)
+			for (int xc = -1; xc <2; xc ++)
 			{
-				for (int yc = -1; yc <2; yc += 1)
+				for (int yc = -1; yc <2; yc ++)
 				{
 					if (x + xc > 10 || y + yc > 10 || x + xc < 1 || y + yc < 1)
 					{
@@ -31,7 +31,7 @@ void boom::nwg()
 						if (xc == 0 && yc == 0)
 							continue;
 						else
-							save[x + xc][y + yc] += 1;
+							save[x + xc][y + yc] ++;
 					}
 				}
 			}
@@ -47,13 +47,13 @@ void boom::rndfix(int& x, int& y) {
 	}
 	else {
 		save[x][y] = 10;
-		for (int xc = -1; xc <= 1; xc ++)
+		for (int xc = -1; xc < 2; xc ++)
 		{
-			for (int yc = -1; yc <= 1; yc ++)
+			for (int yc = -1; yc < 2; yc ++)
 			{
 				if (x + xc > 10 || y + yc > 10 || x + xc < 1 || y + yc < 1)
 				{
-					break;
+					continue;
 				}
 				else {
 					if (xc == 0 && yc == 0)
@@ -94,7 +94,8 @@ void boom::clean(const int& x, const int& y)//清除
 	{
 		outer[y][x] = save[y][x] + '0';
 		ticker[y][x] = 1;//若清除则标记
-		if (y < 1 || x < 1 || y>10 || x>10) {}
+		if (y < 1 || x < 1 || y>10 || x>10) 
+		{}
 		else {
 			lastblock -= 1;
 		}//剩余方格减一
@@ -146,6 +147,7 @@ else{
 		if (ticker[y][x] != 0)
 		{
 			std::cout << "has ticked" << std::endl;
+			return true;
 		}
 		if (save[y][x] >= 10)//踩中雷原地爆炸
 		{
@@ -207,26 +209,38 @@ void boom::view()//输出数组
 	{
 		for (int j = 1; j < 11; j++)
 		{
-			outtextxy((64 * i) - 32, (64 * j) - 32, outer[i][j]);
+			if (outer[i][j] == '0') {
+				outtextxy((64 * i) - 32, (64 * j) - 32, ' ');
+			}else
+			{
+				outtextxy((64 * i) - 32, (64 * j) - 32, outer[i][j]);
+		}
 		}
 	}
 }
 void boom::viewbo()//输出数组
 {
-	std::cout << "    ";
-	for (int i = 1; i < 11; i++)
-		std::cout << "[ " << std::setw(2) << i << "  ]";
-	std::cout << std::endl;
-	std::cout << std::endl;
+	cleardevice();
+	setcolor(BLACK);
+	for (int i = 1; i < 10; i++)
+	{
+		line(0, 64 * i, 640, 64 * i);
+	}
+	for (int i = 1; i < 10; i++)
+	{
+		line(64 * i, 0, 64 * i, 640);
+	}
 	for (int i = 1; i < 11; i++)
 	{
-		std::cout << "[" << std::setw(2) << i << "]";
 		for (int j = 1; j < 11; j++)
 		{
-			std::cout << "[ " << std::setw(2) << save[i][j] << "  ]";
+			if (save[i][j] == 10)
+			{
+				outtextxy((64 * i) - 32, (64 * j) - 32, 'p');
+			}else
+				outtextxy((64 * i) - 32, (64 * j) - 32, outer[i][j]);
+			
 		}
-		std::cout << std::endl << std::endl;
-
 	}
 }
 bool boom::finish() {
