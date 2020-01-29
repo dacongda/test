@@ -1,0 +1,20 @@
+M 001 我从陕西省来
+M 004 我从湖北省来
+M 003 我从外国来
+teser S 10 3 101 0 从不1  
+teser S 10 4 101 0 从不 2
+teser S 10 5 101 0 从不 3 
+teser S 10 6 101 0 从不  4
+alian G what's wrong baby my name is alian #PlayerName#
+alian G SO EZ,EZ
+alian G Dictation!
+alian S 09 1 100 1 2 Everybody take out your dictaaaaaaaation book!
+M 002 NEVER!!!!
+M 003 *take out my dictation book*
+alian S 09 2 001 0 Get out!
+alian S 09 3 100 1 2 What's todays luck number?Oh no matter what's the day today, #PlayerName# always get ready
+M 004 My best friend is LiQiMa!!!!!!!!
+M 005 *Go to the black board*
+alian S 09 4 100 0 *犹豫片刻*OK,LiQiJun come to the black board too
+alian S 09 5 100 0 Ok,The first word is...
+alian S 09 6 101 0 *After dication* #PlayerName# 又没过关，中午来我办公室一趟~
